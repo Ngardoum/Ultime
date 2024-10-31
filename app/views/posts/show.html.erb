@@ -1,0 +1,3 @@
+<h1><%= @post.title %></h1>
+<p>Publié le <%= @post.published_at.strftime("%d %B %Y") %> par <%= @post.user.username %></p>
+<p><%= @post.content %></p>

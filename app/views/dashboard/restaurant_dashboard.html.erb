@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>RestauConnect - Menus</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <%= stylesheet_link_tag 'all_menus', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css"> <!-- Ajout de Bootstrap CSS -->
+</head>
+<body>
+  
+  <!-- Barre de navigation avec logo et icônes -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <%= image_tag 'logo3.png', class: 'd-block w-100', alt: 'Restaurant 1' %>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav social-icons">
+          <li class="nav-item">
+            <a class="nav-link" href="https://facebook.com" target="_blank">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://tiktok.com" target="_blank">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mailto:example@gmail.com">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <div class="card p-4 bg-light border-info shadow-lg">
+      <div class="card-body text-center">
+        <h1 class="display-4 text-primary">Bienvenue sur votre tableau de bord!</h1>
+        <p class="lead text-muted">Gérez vos menus, commandes et promotions depuis ici.</p>
+
+        <!-- Bouton de déconnexion -->
+        <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete, class: "btn btn-danger btn-lg mt-3 mb-3" %>
+
+        <!-- Bouton pour afficher la liste des clients -->
+        <%= link_to 'Voir la liste des Clients', users_path(role: 'client'), class: "btn btn-warning btn-lg mt-3 mb-3" %>
+
+        <!-- Bouton pour voir mes menus -->
+        <%= link_to 'Mes menus', restaurant_menus_path(@restaurant), class: "btn btn-primary btn-lg mt-3 mb-3" %>
+
+        <!-- Bouton pour créer un restaurant -->
+        <%= link_to 'Créer un Restaurant', new_restaurant_path, class: "btn btn-primary btn-lg mt-3 mb-3" %>
+
+        <!-- Bouton pour afficher la liste des restaurants -->
+        <%= link_to 'Voir tous mes Restaurants', restaurants_path, class: "btn btn-info btn-lg mt-3 mb-3" %>
+
+        <% if @restaurant %>
+          <!-- Bouton pour créer un menu si un restaurant existe -->
+          <%= link_to 'Créer un Menu', new_restaurant_menu_path(@restaurant), class: "btn btn-secondary btn-lg mt-3 mb-3" %>
+        <% else %>
+          <!-- Message s'il n'y a pas de restaurant -->
+          <p class="mt-4 text-danger font-weight-bold">Vous n'avez pas encore de restaurant. 
+            <%= link_to 'Créez-en un ici.', new_restaurant_path, class: "text-primary" %>
+          </p>
+        <% end %>
+
+        <%= link_to 'Voir tous les Articles', posts_path, class: "btn btn-secondary btn-lg mt-3 mb-3" %>
+        <%= link_to 'Créer un Article', new_post_path, class: "btn btn-secondary btn-lg mt-3 mb-3" %>
+        
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ajout de Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>

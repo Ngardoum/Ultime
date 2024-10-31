@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>RestauConnect - Restaurant</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <%= stylesheet_link_tag 'all_menus', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  
+  <!-- Barre de navigation avec logo et icônes -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <%= image_tag 'logo3.png', class: 'd-block w-100', alt: 'Restaurant 1' %>
+      </a>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav social-icons">
+          <li class="nav-item">
+            <a class="nav-link" href="https://facebook.com" target="_blank">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://tiktok.com" target="_blank">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mailto:example@gmail.com">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Deuxième barre de navigation avec les liens principaux -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mt-2">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLinks" aria-controls="navbarLinks" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarLinks">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= all_menus_path %>">Menus</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= all_restaurants_path %>">Restaurants</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#gallery">Galerie</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_session_path %>">Connexion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_registration_path %>">Inscription</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Section des menus -->
+  <div id="menus-section" class="container mt-5">
+  <h2 class="text-center">Menus du Jour</h2>
+  <div class="row">
+    <% @menus.each do |menu| %>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <% if menu.image.attached? %>
+             <%= image_tag menu.image, class: "img-fluid mt-2", alt: menu.name %>     
+          <% else %>
+            <%= image_tag 'default_menu_image.jpg', class: 'card-img-top', alt: 'Image par défaut du menu' %>
+          <% end %>
+          
+          <div class="card-body">
+            <h5 class="card-title"><%= menu.name %></h5>
+            <p class="card-text"><%= menu.description %></p>
+            <p class="card-text"><strong>Restaurant :</strong> <%= menu.restaurant.name %></p>
+            <p class="card-text"><%= number_to_currency(menu.price, unit: "€") %></p>
+            <% if user_signed_in? %>
+            <%= button_to 'Commander', create_and_pay_orders_path(menu_id: menu.id, restaurant_id: menu.restaurant.id), method: :post, class: 'btn btn-primary' %>            <% else %>
+              <%= link_to 'Passer la commande', new_user_session_path, class: 'btn btn-secondary' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+</body>
+</html>

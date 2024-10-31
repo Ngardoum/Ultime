@@ -1,0 +1,28 @@
+<h1>Liste des Clients</h1>
+
+<% if @clients.any? %>
+  <ul>
+    <% @clients.each do |client| %>
+      <li>
+        <%= client.email %> - <%= client.username %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Aucun client n'a été trouvé.</p>
+<% end %>
+
+<h1>Liste des Restaurants</h1>
+
+<% if @restaurants.any? %>
+  <ul>
+    <% @restaurants.each do |restaurant| %>
+      <li>
+        <%= restaurant.email %> - <%= restaurant.username %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Aucun restaurant n'a été trouvé.</p>
+<% end %>
+

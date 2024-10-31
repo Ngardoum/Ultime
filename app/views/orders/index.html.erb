@@ -1,0 +1,26 @@
+<h2 class="text-center mt-5">Mes commandes</h2>
+
+<% if @orders.any? %>
+  <div class="table-responsive">
+  <table class="table table-striped table-bordered mt-3">
+  <thead style="background-color: #d55935; color: white;"> <!-- Couleur d'en-tête personnalisée et texte blanc -->
+    <tr>
+      <th scope="col">Restaurants 1</th>
+      <th scope="col">Date</th>
+      <th scope="col">Prix</th>
+    </tr>
+
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.restaurant.name %></td> <!-- Assurez-vous que restaurant est accessible -->
+            <td><%= order.created_at.strftime("%d/%m/%Y") %></td>
+            <td><%= number_to_currency(order.total_price, unit: "$") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <p class="text-center">Vous n'avez encore passé aucune commande.</p>
+<% end %>

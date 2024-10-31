@@ -1,0 +1,39 @@
+// active_admin.scss
+@import "active_admin/mixins";
+@import "active_admin/base";
+
+/* Couleur de fond des panneaux */
+.panel {
+  background-color: #fff6e5; /* Fond orange clair */
+  border-color: #ffa726; /* Bordure orange foncé */
+  box-shadow: 0px 0px 10px rgba(255, 167, 38, 0.3);
+}
+
+/* Couleur des titres de panneaux */
+.panel h3 {
+  color: #e65100; /* Titre en orange foncé */
+}
+
+/* Style des boutons principaux */
+.button.primary {
+  background-color: #ff9800; /* Couleur orange */
+  color: white;
+  border: 1px solid #e65100;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.button.primary:hover {
+  background-color: #e65100; /* Orange foncé au survol */
+  color: white;
+}
+
+/* Style des div de statistiques */
+.statistic-panel div {
+  font-size: 18px;
+  padding: 10px 0;
+  color: #bf360c; /* Rouge brique pour plus de contraste */
+  font-weight: bold;
+}

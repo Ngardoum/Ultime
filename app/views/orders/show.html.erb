@@ -1,0 +1,55 @@
+<h1>Détails de la commande</h1>
+
+<!-- Affichage des informations principales de la commande -->
+<p>
+  <strong>Numéro de commande :</strong>
+  <%= @order.id %>
+</p>
+
+<p>
+  <strong>Date de création :</strong>
+  <%= @order.created_at.strftime("%d/%m/%Y %H:%M") %>
+</p>
+
+<p>
+  <strong>Client :</strong>
+  <%= @order.user.username %> <!-- Assurez-vous que le modèle User possède un champ username -->
+</p>
+
+<p>
+  <strong>Total de la commande :</strong>
+  <%= number_to_currency(@order.total_price) %> <!-- Utilisez total_price pour le total de la commande -->
+</p>
+
+<p>
+  <strong>Statut :</strong>
+  <%= @order.status.capitalize %> <!-- Affiche le statut de la commande en capitalisant la première lettre -->
+</p>
+
+<!-- Affichage des articles commandés -->
+<% if @order.order_items.any? %>
+  <h2>Articles commandés</h2>
+  <ul>
+    <% @order.order_items.each do |order_item| %>
+      <li>
+        <%= order_item.menu.name %> - <!-- Affiche le nom du menu -->
+        Quantité : <%= order_item.quantity %> - 
+        Prix : <%= number_to_currency(order_item.menu.price) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Aucun article dans cette commande.</p>
+<% end %>
+
+<!-- Statut supplémentaire basé sur l'état de validation de la commande -->
+<p><strong>Statut de la commande :</strong> <%= @order.status.capitalize %></p>
+
+<% if @order.validated? %>
+  <p>Votre commande est validée et en cours de préparation.</p>
+<% else %>
+  <p>Votre commande est en attente de validation. Veuillez procéder au paiement.</p>
+<% end %>
+
+<!-- Bouton de retour à la liste des menus -->
+<%= link_to 'Retour à la liste des menus', all_menus_path, class: 'btn btn-primary' %>

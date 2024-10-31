@@ -1,0 +1,12 @@
+<h2>Chat avec <%= @conversation.client == current_user ? @conversation.restaurant.name : @conversation.client.name %></h2>
+
+<div id="messages">
+  <%= render @conversation.messages %> <!-- Affichage des messages de la conversation -->
+</div>
+
+<%= form_with(model: [@conversation, Message.new], remote: true, html: {id: 'new_message'}) do |f| %> <!-- Formulaire d'envoi de message -->
+  <div class="form-group">
+    <%= f.text_area :content, rows: 3, class: "form-control", placeholder: "Tapez votre message..." %>
+  </div>
+  <%= f.submit 'Envoyer', class: "btn btn-primary" %>
+<% end %>

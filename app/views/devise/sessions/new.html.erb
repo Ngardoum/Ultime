@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="myCard">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="myLeftCtn">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "myForm text-center mt-5") do |f| %>
+            <header>Connectez-vous !</header>
+
+            <div class="form-group">
+              <i class="fas fa-envelope"></i>
+              <%= f.email_field :email, class: "myInput", placeholder: "Email", autofocus: true, autocomplete: "email", required: true %>
+            </div>
+
+            <div class="form-group">
+              <i class="fas fa-lock"></i>
+              <%= f.password_field :password, class: "myInput", placeholder: "Mot de passe", autocomplete: "current-password", required: true %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Se connecter", class: "butt" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="myRightCtn">
+          <div class="box">
+            <header>Bienvenue à tous !</header>
+            <p class="text-white">
+              Nous sommes un restaurant moderne qui offre une expérience culinaire unique, alliant saveurs traditionnelles et innovations contemporaines. Nos plats sont préparés avec des ingrédients frais et de qualité, dans un cadre élégant et convivial, parfait pour
+              partager un moment gourmand en famille, entre amis ou lors d'une occasion spéciale.
+            </p>
+            <input type="button" class="butt_out" value="Apprendre" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "devise/shared/links" %>

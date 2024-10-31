@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag 'all_menus', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'ge', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <title>Modifier Menu</title>
+</head>
+
+<body>
+
+    <!-- Barre de navigation (identique à la vue précédente) -->
+
+    <div class="container mt-5">
+        <div class="card shadow-lg">
+            <div class="card-header text-center bg-light">
+                <h1 class="text-pink">Modifier le menu pour <%= @restaurant.name %></h1>
+            </div>
+            <div class="card-body">
+                <%= form_with model: [@restaurant, @menu], local: true, html: { multipart: true } do |f| %>
+                    <% if @menu.errors.any? %>
+                        <div id="error_explanation" class="alert alert-danger">
+                            <h2><%= pluralize(@menu.errors.count, "erreur") %> empêchent la modification de ce menu :</h2>
+                            <ul>
+                                <% @menu.errors.full_messages.each do |message| %>
+                                    <li><%= message %></li>
+                                <% end %>
+                            </ul>
+                        </div>
+                    <% end %>
+
+                    <div class="form-group">
+                        <%= f.label :name, class: "control-label" %>
+                        <%= f.text_field :name, class: "form-control", value: @menu.name, placeholder: "Nom du Menu" %>
+                    </div>
+
+                    <div class="form-group">
+                        <%= f.label :description, class: "control-label" %>
+                        <%= f.text_area :description, class: "form-control", value: @menu.description, placeholder: "Description du Menu", rows: 3 %>
+                    </div>
+
+                    <div class="form-group">
+                        <%= f.label :price, class: "control-label" %>
+                        <%= f.number_field :price, class: "form-control", step: 0.01, value: @menu.price, placeholder: "Prix en FCFA" %>
+                    </div>
+
+                    <div class="form-group">
+                        <%= f.label :image, class: "control-label" %>
+                        <%= f.file_field :image, class: "form-control" %>
+                        <p class="mt-2">Image actuelle : <%= image_tag @menu.image.url if @menu.image.attached? %></p>
+                    </div>
+
+                    <div class="text-center">
+                        <%= f.submit 'Modifier Menu', class: "btn btn-pink" %>
+                    </div>
+                <% end %>
+
+                <div class="text-center mt-3">
+                    <%= link_to 'Retour aux menus', restaurant_menus_path(@restaurant), class: "btn btn-secondary" %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts (identiques à la vue précédente) -->
+
+</body>
+</html>

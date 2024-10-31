@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajout de la balise viewport pour la réactivité -->
+  <title>RestauConnect - Accueil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <style>
+    /* Styles pour centrer le tableau de bord */
+    body {
+    font: 12px/19px  Arial, Helvetica, sans-serif;
+    color:#3e3e3e;
+    min-width:960px;
+    background: url(../images/bg_body.png) 0 0 repeat #f2efe7;
+  }
+  
+  
+    .navbar {
+      margin-bottom: 20px; /* Espace en dessous de la navbar */
+    }
+
+    .card {
+      background-color: #d55935; /* Appliquer la couleur au conteneur */
+      width: 100%; /* Élargir la carte à 80% de la page */
+      max-width: 1000px; /* Largeur maximale */
+      padding: 30px; /* Espace interne */
+      margin-top: 50px;
+      border-radius: 15px; /* Bords arrondis pour un effet plus esthétique */
+      color: white; /* Couleur du texte en blanc */
+    }
+
+   
+
+    .card, .card-header, {
+      background-color: #d55935;
+      color: white;
+    }
+
+    .card .card-body h1, .card .card-body p {
+      color: white; /* Texte en blanc dans le corps de la carte */
+    }
+
+    .btn-primary {
+      background-color: #d55935; /* Modifier la couleur des boutons si nécessaire */
+      border-color: #d55935;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Pour centrer verticalement */
+    }
+
+
+  </style>
+</head>
+<body>
+  
+  <!-- Barre de navigation avec logo et icônes -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <%= image_tag 'logo3.png', class: 'd-block w-100', alt: 'Logo de RestauConnect' %> <!-- Utilisation de image_tag -->
+      </a>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav social-icons">
+          <li class="nav-item">
+            <a class="nav-link" href="https://facebook.com" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://tiktok.com" target="_blank" aria-label="TikTok">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mailto:example@gmail.com" aria-label="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete, class: 'nav-link btn-deconnexion' %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container d-flex align-items-center justify-content-center mt-5">
+    <div class="card text-center bg-light border-info"> <!-- Couleur de fond clair et bordure -->
+       <div class="card-header" style="background-color: #d55935; color: white;"> <!-- Couleur de fond personnalisée et texte en blanc -->
+          <h2 class="mb-0">Tableau de Bord</h2>
+    </div>
+      <div class="card-body">
+        <h1 class="display-4 text-primary">Bienvenue, <%= current_user.username %> !</h1> <!-- Couleur de texte -->
+        <p class="lead text-secondary">Nous sommes ravis de vous voir ici. Explorez votre tableau de bord pour gérer vos commandes.</p> <!-- Couleur de texte secondaire -->
+
+        <div class="text-center mb-4">
+          <%= link_to 'Voir mes commandes', orders_path, class: 'btn btn-primary btn-lg' %> <!-- Bouton stylisé -->
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        Vous pouvez naviguer facilement vers d'autres sections.
+      </div>
+    </div>
+  </div>
+
+  <!-- Ajout des scripts JS à la fin du body pour améliorer les performances -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

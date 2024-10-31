@@ -1,0 +1,10 @@
+<h1>Démarrer une nouvelle conversation avec <%= @restaurant.username %></h1>
+
+<%= form_with(model: @conversation, url: conversations_path) do |f| %>
+  <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
+  <%= f.hidden_field :client_id, value: current_user.id %>
+  <%= link_to 'Démarrer une conversation', new_conversation_path(restaurant_id: restaurant.id) %>
+
+<% end %>
+
+<%= link_to 'Retour à la liste des restaurants', restaurants_path %>

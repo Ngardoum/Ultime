@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="myCard">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="myLeftCtn">
+                    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "myForm text-center" }) do |f| %>
+                        <header>Créer votre compte</header>
+
+                        <!-- Username Field -->
+                        <div class="form-group">
+                            <i class="fas fa-user"></i>
+                            <%= f.text_field :username, required: true, class: "myInput", placeholder: "Nom d'utilisateur" %>
+                        </div>
+
+                        <!-- Email Field -->
+                        <div class="form-group">
+                            <i class="fas fa-envelope"></i>
+                            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "myInput", placeholder: "Email" %>
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="form-group">
+                            <i class="fas fa-lock"></i>
+                            <%= f.password_field :password, required: true, autocomplete: "new-password", class: "myInput", placeholder: "Mot de passe" %>
+                            <% if @minimum_password_length %>
+                                
+                            <% end %>
+                        </div>
+
+                        <!-- Password Confirmation Field -->
+                        <div class="form-group">
+                            <i class="fas fa-lock"></i>
+                            <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "myInput", placeholder: "Confirmation mot de passe" %>
+                        </div>
+
+                        <!-- Role Field (optional, based on your app) -->
+                        <div class="form-group">
+                            <%= f.label :role %>
+                            <%= f.select :role, User.roles.keys.map { |role| [role.humanize, role] }, {}, class: "form-control" %>
+                        </div>
+                        <!-- Submit Button -->
+                        <%= f.submit "CREATE ACCOUNT", class: "butt" %>
+                    <% end %>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="myRightCtn">
+                    <div class="box">
+                        <header>Bienvenue à tous !</header>
+                        <p class="text-white">
+                            Nous sommes un restaurant moderne qui offre une expérience culinaire unique, alliant saveurs traditionnelles et innovations contemporaines. Nos plats sont préparés avec des ingrédients frais et de qualité, dans un cadre élégant et convivial, parfait pour
+                            partager un moment gourmand en famille, entre amis ou lors d'une occasion spéciale.
+                        </p>
+                        <input type="button" class="butt_out" value="Apprendre" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

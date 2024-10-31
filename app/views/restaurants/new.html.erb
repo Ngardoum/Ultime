@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <tstylesheet_link_tag " href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <%= stylesheet_link_tag 'sty', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <title>Nouveau Restaurant</title>
+</head>
+
+<body>
+<!-- Barre de navigation avec logo et icônes -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <%= image_tag 'logo3.png', class: 'd-block w-100', alt: 'Restaurant 1' %> <!-- Utilisation de image_tag -->
+      </a>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav social-icons">
+          <li class="nav-item">
+            <a class="nav-link" href="https://facebook.com" target="_blank">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://tiktok.com" target="_blank">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mailto:example@gmail.com">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+    <div class="container mt-5">
+        <div class="card shadow-lg">
+            <div class="card-header text-center bg-light">
+                <h1 class="text-pink">Nouveau Restaurant</h1>
+            </div>
+            <div class="card-body">
+                <%= form_with model: @restaurant, local: true do |f| %>
+                    <% if @restaurant.errors.any? %>
+                        <div id="error_explanation" class="alert alert-danger">
+                            <h2><%= pluralize(@restaurant.errors.count, "error") %> empêchent la création de ce restaurant :</h2>
+                            <ul>
+                                <% @restaurant.errors.full_messages.each do |message| %>
+                                    <li><%= message %></li>
+                                <% end %>
+                            </ul>
+                        </div>
+                    <% end %>
+
+                    <div class="form-group">
+                        <%= f.label :logo, class: "control-label" %>
+                        <%= f.file_field :logo, class: "form-control-file" %>
+                    </div>
+
+                    <div class="form-group">
+                        <%= f.label :slogan, class: "control-label" %>
+                        <%= f.text_field :slogan, class: "form-control", placeholder: "Entrez votre slogan" %>
+                    </div>
+
+                    <div class="form-group">
+                        <%= f.label :name, class: "control-label" %>
+                        <%= f.text_field :name, class: "form-control", placeholder: "Nom du Restaurant" %>
+                    </div>
+
+                    <div class="form-group">
+                        <%= f.label :address, class: "control-label" %>
+                        <%= f.text_field :address, class: "form-control", placeholder: "Adresse" %>
+                    </div>
+
+                    <div class="form-group">
+                        <%= f.label :cuisine_type, class: "control-label" %>
+                        <%= f.text_field :cuisine_type, class: "form-control", placeholder: "Type de Cuisine" %>
+                    </div>
+
+                    <div class="form-group">
+                        <%= f.label :country, class: "control-label" %>
+                        <%= f.text_field :country, class: "form-control", placeholder: "Pays" %>
+                    </div>
+
+                    <div class="form-group">
+                        <%= f.label :latitude, class: "control-label" %>
+                        <%= f.text_field :latitude, class: "form-control", placeholder: "Latitude" %>
+                    </div>
+
+                    <div class="form-group">
+                        <%= f.label :longitude, class: "control-label" %>
+                        <%= f.text_field :longitude, class: "form-control", placeholder: "Longitude" %>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="map">Choisissez votre localisation</label>
+                        <!-- Intégration de la carte ici si nécessaire -->
+                    </div>
+
+                    <div class="text-center">
+                        <%= f.submit 'Créer Restaurant', class: "btn btn-pink" %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+

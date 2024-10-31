@@ -1,0 +1,44 @@
+body {
+    background-color: #f2f2f2; /* Couleur de fond gris clair */
+}
+
+.card {
+    border-radius: 15px;
+    background-color: white; /* Fond de la carte blanc */
+    transition: transform 0.3s; /* Effet de transition au survol */
+}
+
+.card:hover {
+    transform: scale(1.02); /* Effet d'agrandissement au survol */
+}
+
+.bg-light {
+    background-color: #ffffff; /* Couleur de fond de l'en-tête de la carte */
+}
+
+.text-pink {
+    color: #e91e63; /* Couleur rose pour le texte */
+}
+
+.btn-pink {
+    background-color: #e91e63; /* Couleur rose pour le bouton */
+    color: white;
+}
+
+.btn-pink:hover {
+    background-color: #d81b60; /* Couleur rose plus foncé au survol */
+}
+
+.control-label {
+    font-weight: bold;
+    color: #333; /* Couleur du texte des labels */
+}
+
+.alert {
+    margin-bottom: 20px;
+}
+
+.form-control-file {
+    border: 1px solid #ced4da; /* Bordure standard */
+    border-radius: 0.25rem; /* Bordure arrondie */
+}

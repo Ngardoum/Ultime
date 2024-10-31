@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Bootstrap CSS -->
+  <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" %>
+  <%= stylesheet_link_tag 'sty', media: 'all', 'data-turbolinks-track': 'reload' %>
+  
+  <title>Modifier Restaurant</title>
+</head>
+
+<body>
+  <!-- Barre de navigation avec logo et icônes -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <%= image_tag 'logo3.png', class: 'd-block w-100', alt: 'Restaurant Logo' %>
+      </a>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav social-icons">
+          <li class="nav-item">
+            <a class="nav-link" href="https://facebook.com" target="_blank">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://tiktok.com" target="_blank">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mailto:example@gmail.com">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <h1>Modifier le Restaurant</h1>
+
+  <%= form_for @restaurant do |f| %>
+    <div class="form-group">
+      <%= f.label :logo, "Logo du Restaurant", class: "control-label" %>
+      <%= f.file_field :logo, class: "form-control-file" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :slogan, "Slogan", class: "control-label" %>
+      <%= f.text_field :slogan, class: "form-control", placeholder: "Entrez votre slogan" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :name, "Nom du Restaurant", class: "control-label" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Nom du Restaurant" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :address, "Adresse", class: "control-label" %>
+      <%= f.text_field :address, class: "form-control", placeholder: "Adresse" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :cuisine_type, "Type de Cuisine", class: "control-label" %>
+      <%= f.text_field :cuisine_type, class: "form-control", placeholder: "Type de Cuisine" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :country, "Pays", class: "control-label" %>
+      <%= f.text_field :country, class: "form-control", placeholder: "Pays" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :latitude, "Latitude", class: "control-label" %>
+      <%= f.text_field :latitude, class: "form-control", placeholder: "Latitude" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :longitude, "Longitude", class: "control-label" %>
+      <%= f.text_field :longitude, class: "form-control", placeholder: "Longitude" %>
+    </div>
+
+    <div class="form-group">
+      <label for="map">Choisissez votre localisation</label>
+      <!-- Intégrez ici une carte interactive, par exemple avec l'API de Google Maps ou Leaflet.js -->
+      <div id="map" style="height: 400px;"></div> <!-- Taille de la carte -->
+    </div>
+
+    <%= f.submit "Enregistrer les modifications", class: "btn btn-primary" %>
+  <% end %>
+
+  <!-- Scripts Bootstrap et jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

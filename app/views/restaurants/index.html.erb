@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RestauConnect - Menus</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <%= stylesheet_link_tag 'all_menus', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+
+  <!-- Barre de navigation avec logo et icônes -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <%= image_tag 'logo3.png', class: 'd-block w-100', alt: 'RestauConnect' %>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav social-icons">
+          <li class="nav-item">
+            <a class="nav-link" href="https://facebook.com" target="_blank">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://tiktok.com" target="_blank">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mailto:example@gmail.com">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Liste des restaurants -->
+  <main class="container my-4">
+    <h1>Mes Restaurants</h1>
+
+    <% if @restaurants.any? %>
+      <ul class="list-unstyled">
+        <% @restaurants.each do |restaurant| %>
+          <li class="mb-4">
+            <div class="d-flex align-items-center">
+              <!-- Logo du restaurant -->
+              
+              <!-- Détails du restaurant -->
+              <div>
+                <strong><%= link_to restaurant.name, restaurant_path(restaurant), class: "text-decoration-none" %></strong> - <span><%= restaurant.address %></span>
+                <div class="mt-2">
+                   <%= link_to 'Modifier', edit_restaurant_path(restaurant), class: "btn btn-secondary btn-sm" %>
+                   <%= link_to 'Supprimer', restaurant_path(restaurant), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer ce restaurant ?' }, class: 'btn btn-danger' %>
+                </div>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>Vous n'avez créé aucun restaurant pour l'instant.</p>
+    <% end %>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>RestauConnect - Accueil</title>
+  <!-- CSS de Bootstrap -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<%= stylesheet_link_tag 'mick', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+
+  <!-- Barre de navigation avec logo et icônes -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <%= image_tag 'logo3.png', class: 'd-block w-100', alt: 'Restaurant 1' %> <!-- Utilisation de image_tag -->
+      </a>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav social-icons">
+          <li class="nav-item">
+            <a class="nav-link" href="https://facebook.com" target="_blank">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://tiktok.com" target="_blank">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mailto:example@gmail.com">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mt-2">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLinks" aria-controls="navbarLinks" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarLinks">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link " href="<%= root_path %>">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= all_menus_path %>">Menus</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= all_restaurants_path %>">Restaurants</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= posts_path %>">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_session_path %>">Connexion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_registration_path %>">Inscription</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="restaurantCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= image_tag 'slide.jpg', class: 'd-block w-100', alt: 'Restaurant 1' %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag 'slide2.jpg', class: 'd-block w-100', alt: 'Restaurant 2' %>
+    </div>
+    <div class="carousel-item">
+      <%= image_tag 'slide1.jpg', class: 'd-block w-100', alt: 'Restaurant 3' %>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#restaurantCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#restaurantCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
+  <!-- Footer -->
+  <footer class="bg-light text-center text-lg-start mt-5">
+   
+      <!-- Section : Contact et informations -->
+      <section class="">
+        <div class="row">
+          <!-- Colonne Contact -->
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Contact</h5>
+            <p>
+              Adresse : 123 Rue de la Restauration, Paris<br>
+              Téléphone : +33 1 23 45 67 89<br>
+              Email : <a href="mailto:example@gmail.com">example@gmail.com</a>
+            </p>
+          </div>
+  
+          <!-- Colonne À propos -->
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase">À propos</h5>
+            <p>
+              RestauConnect est une plateforme de connexion entre les restaurants et les clients, offrant une expérience unique pour explorer des menus divers et réserver en ligne.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2024 RestauConnect - Tous droits réservés.
+    </div>
+  </footer>
+
+  <!-- JS de Bootstrap et Popper.js (pour les éléments interactifs) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+

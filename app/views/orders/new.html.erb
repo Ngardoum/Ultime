@@ -1,0 +1,34 @@
+<h1>Confirmation de commande</h1>
+
+<h3>Restaurant : <%= @restaurant.name %></h3>
+
+<% if @menu %>
+  <div class="menu-item">
+    <strong>Menu : <%= @menu.name %></strong> - <%= number_to_currency(@menu.price) %>
+    <p><%= @menu.description %></p>
+  </div>
+
+  <!-- Formulaire pour la commande -->
+  <%= form_with model: @order, url: restaurant_orders_path(@restaurant), local: true do |f| %>
+
+    <!-- Champ caché pour relier la commande au restaurant -->
+    <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
+
+    <!-- Construction du order_item lié à la commande -->
+    <%= f.fields_for :order_items, @order.order_items.build do |item_form| %>
+      <!-- Champ caché pour relier l'item de la commande au menu sélectionné -->
+      <%= item_form.hidden_field :menu_id, value: @menu.id %>
+
+      <!-- Champ pour la quantité de menus -->
+      <div class="field">
+        <%= item_form.label :quantity, "Quantité" %>
+        <%= item_form.number_field :quantity, value: 1, min: 1 %>
+      </div>
+    <% end %>
+
+    <!-- Bouton pour soumettre la commande -->
+    <div class="actions">
+      <%= f.submit 'Confirmer la commande', class: "btn btn-success" %>
+    </div>
+  <% end %>
+<% end %>

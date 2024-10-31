@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag 'all_menus', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'ge', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <title>Créer Menu</title>
+</head>
+
+<body>
+
+    <!-- Barre de navigation avec logo et icônes -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <%= image_tag 'logo3.png', class: 'd-block w-100', alt: 'Restaurant 1' %>
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav social-icons">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://facebook.com" target="_blank">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://tiktok.com" target="_blank">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="mailto:example@gmail.com">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="card shadow-lg">
+            <div class="card-header text-center bg-light">
+                <h1 class="text-pink">Créer un nouveau menu pour <%= @restaurant.name %></h1>
+            </div>
+            <div class="card-body">
+                <%= form_with model: [@restaurant, @menu], local: true, html: { multipart: true } do |f| %>
+                    <% if @menu.errors.any? %>
+                        <div id="error_explanation" class="alert alert-danger">
+                            <h2><%= pluralize(@menu.errors.count, "erreur") %> empêchent la création de ce menu :</h2>
+                            <ul>
+                                <% @menu.errors.full_messages.each do |message| %>
+                                    <li><%= message %></li>
+                                <% end %>
+                            </ul>
+                        </div>
+                    <% end %>
+
+                    <div class="form-group">
+                        <%= f.label :name, class: "control-label" %>
+                        <%= f.text_field :name, class: "form-control", placeholder: "Nom du Menu" %>
+                    </div>
+
+                    <div class="form-group">
+                        <%= f.label :description, class: "control-label" %>
+                        <%= f.text_area :description, class: "form-control", placeholder: "Description du Menu", rows: 3 %>
+                    </div>
+
+                    <div class="form-group">
+                        <%= f.label :price, class: "control-label" %>
+                        <%= f.number_field :price, class: "form-control", step: 0.01, placeholder: "Prix en $" %>
+                    </div>
+
+                    <div class="form-group">
+                        <%= f.label :image, class: "control-label" %>
+                        <%= f.file_field :image, class: "form-control" %>
+                    </div>
+
+                    <div class="text-center">
+                        <%= f.submit 'Créer Menu', class: "btn btn-pink" %>
+                    </div>
+                <% end %>
+
+                <div class="text-center mt-3">
+                    <%= link_to 'Retour aux menus', restaurant_menus_path(@restaurant), class: "btn btn-secondary" %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
